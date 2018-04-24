@@ -56,9 +56,9 @@ body{
 }
 
 .item5{
-    transform: skew(30deg) scale(0.5,1) rotate(45deg) translate(10px,20px);
-    -ms-transform: skew(30deg) scale(0.5,1) rotate(45deg) translate(10px,20px);		/* IE 9 */
-    -webkit-transform: skew(30deg) scale(0.5,1) rotate(45deg) translate(10px,20px);	/* Safari and Chrome */
-    -o-transform: skew(30deg) scale(0.5,1) rotate(45deg) translate(10px,20px);		/* Opera */
-    -moz-transform: skew(30deg) scale(0.5,1) rotate(45deg) translate(10px,20px);
+    transform: rotate(52deg) translate(50px,20px) scale(1.5,1) skew(32deg);
+     -ms-transform: rotate(52deg) translate(50px,20px) scale(1.5,1) skew(32deg);		
+    -webkit-transform: rotate(52deg) translate(50px,20px) scale(1.5,1) skew(32deg);
+    -o-transform: rotate(52deg) translate(50px,20px) scale(1.5,1) skew(32deg);		
+    -moz-transform: rotate(52deg) translate(50px,20px) scale(1.5,1) skew(32deg);
 }
