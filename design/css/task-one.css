@@ -1,0 +1,44 @@
+body{
+    text-align: center;
+}
+.text{
+    position: relative;
+    width:120px;
+    margin:auto;
+    color:black;
+    font-size: 22px;
+    font-weight: bold;
+    padding:10px;
+    margin-top: 40px;
+    transition: color 0.35 linear;
+}
+.line{
+    position: absolute;
+    margin: 0 auto;
+    left:0;
+    right:0;
+    bottom:0;
+    width:0px;
+    height:2px;
+    background: blue;
+    transition: width 0.35s linear;
+}
+
+.button-box{
+    margin-top:40px;
+}
+
+.button-box .button{
+    border:1px solid #dedede;
+    background: white;
+    padding:3px 10px;
+    border-radius:6px;
+    -moz-border-radius:6px; /* 老的 Firefox */
+    color:black;
+    font-size:16px;
+    font-weight: bold;
+    box-shadow: 1px 1px 1px #888;
+    outline: none;
+}
+
+
