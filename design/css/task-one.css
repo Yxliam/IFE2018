@@ -1,16 +1,19 @@
 body{
     text-align: center;
 }
-.text{
+.text-box{
     position: relative;
     width:120px;
     margin:auto;
-    color:black;
     font-size: 22px;
     font-weight: bold;
     padding:10px;
     margin-top: 40px;
+}
+.text{
+    color:black;
     transition: color 0.35 linear;
+    
 }
 .line{
     position: absolute;
@@ -22,6 +25,13 @@ body{
     height:2px;
     background: blue;
     transition: width 0.35s linear;
+}
+
+.active .line{
+    width:100px;
+}
+.active .text{
+    color:blue;
 }
 
 .button-box{
