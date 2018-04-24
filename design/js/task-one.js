@@ -2,7 +2,7 @@ window.onload = function(){
     var button = document.querySelector('#j-button'),
         line = document.querySelector('#j-line'),
         text = document.querySelector('#j-text'),
-        flag = false;
+        flag = true;
     button.onclick = function(){
         toggle();
     }
