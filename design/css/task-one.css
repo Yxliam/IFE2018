@@ -5,15 +5,14 @@ body{
     position: relative;
     width:120px;
     margin:auto;
-    font-size: 22px;
-    font-weight: bold;
     padding:10px;
     margin-top: 40px;
 }
 .text{
     color:black;
     transition: color 0.35 linear;
-    
+    font-size: 22px;
+    font-weight: bold;
 }
 .line{
     position: absolute;
