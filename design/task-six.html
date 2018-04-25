@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>No.6 - 利用 CSS animation 制作一个炫酷的 Slider</title>
+    <link rel="stylesheet" href="./css/task-six.css">
+</head>
+<body>
+        <div class="img-box">
+            <img class="big-pic" src="./img/6-2.jpg" alt="" id="j-big-pic">
+            <ul class="small-pic-list">
+                <li class="small-pic-item">
+                    <img src="./img/6-1.jpg" alt="" data-pic="1">
+                </li>
+                <li class="small-pic-item">
+                    <img src="./img/6-2.jpg" alt="" data-pic="2">
+                </li>
+                <li class="small-pic-item">
+                    <img src="./img/6-3.jpg" alt="" data-pic="3">
+                </li>
+                <li class="small-pic-item">
+                    <img src="./img/6-4.jpg" alt="" data-pic="4">
+                </li>
+                <li class="small-pic-item">
+                    <img src="./img/6-5.jpg" alt="" data-pic="5">
+                </li>
+            </ul>
+        </div>
+</body>
+<script>
+    window.onload = function(){
+        var imgList = document.querySelectorAll('.small-pic-item img'),
+            bigPic  = document.querySelector('#j-big-pic');
+        var len = imgList.length,
+            i = 0;
+       for(i;i < len;i++){
+           (function(i){
+            imgList[i].onclick = function(){
+                var src = this.getAttribute('src'),
+                    dataPic = this.getAttribute('data-pic');
+                    bigPic.setAttribute('src',src);    
+                switch(dataPic){
+                    case '1':
+                        bigPic.style.cssText = 'animation: mymove1 0.5s ease-out;'  
+                        break;
+                    case '2':
+                        bigPic.style.cssText = 'animation: mymove2 0.5s ease-out;'  
+                        break;
+                    case '3':
+                        bigPic.style.cssText = 'animation: mymove3 1s ease-in;'  
+                        break;
+                    case '4':
+                        bigPic.style.cssText = ' animation: mymove4 1s ease-out;'  
+                        break;
+                    case '5':
+                        bigPic.style.cssText = ' animation: mymove5 0.7s ease-in-out;'  
+                        break;
+                }  
+            }
+           })(i)
+       }
+    }
+</script>
+</html>

@@ -1,0 +1,83 @@
+*{
+    padding:0;
+    margin:0;
+}
+ul{
+    list-style: none;
+}
+.img-box{
+    position: absolute;
+    width:600px;
+    height:400px;
+   left:50%;
+   top:50%;
+   margin-left:-250px;
+   margin-top:-250px;
+   overflow: hidden;
+}
+.big-pic{
+    position: absolute;
+    left:0;
+    top:0;
+    width:100%;
+    height:100%;
+    /* animation: mymove1 0.5s ease-out; */
+    /* animation: mymove2 0.5s ease-out; */
+    /* animation: mymove3 1s ease-in; */
+    /* animation: mymove4 1s ease-out; */
+    /* animation: mymove5 0.7s ease-in-out; */
+}
+
+
+.small-pic-list{
+    position: absolute;
+    width:100%;
+    height:50px;
+    bottom:20px;
+    left:0;
+    display: flex;
+    justify-content: center;
+}
+.small-pic-list .small-pic-item{
+    width:100px;
+    box-sizing: border-box;
+    margin-right:10px;
+    cursor: pointer;
+}
+.small-pic-list .small-pic-item:last-child{
+    margin-right: 0;
+}
+.small-pic-list .small-pic-item img{
+    width:100px;
+    height:50px;
+}
+
+@keyframes mymove1
+{
+    0%   { left:-500px; }
+    100% { left:0px; }
+}
+
+@keyframes mymove2
+{
+    0%   { top:350px; }
+    100% { top:0px; }
+}
+
+@keyframes mymove3
+{
+  0%{transform: scale(0.1)}
+  100%{transform: scale(1)}
+}
+
+@keyframes mymove4
+{
+  0%{transform: scale(2)}
+  100%{transform: scale(1)}
+}
+
+@keyframes mymove5
+{
+  0%{transform: rotate(-360deg) scale(0.1);}
+  100%{transform:rotate(0deg) scale(1)}
+}
