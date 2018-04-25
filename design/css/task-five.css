@@ -30,7 +30,6 @@ body{
     background: rgba(7,133,251,0.3);
     transition: all 0.5s linear;
 }
-
 .top{
     transform: translateY(-100px) rotateX(90deg);
 }
