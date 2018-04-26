@@ -1,0 +1,19 @@
+{
+  "name": "mvvm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "node-sass": "^4.8.3",
+    "san": "^3.5.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "dev": "npm run start",
+    "build": "parcel build index.html"
+  },
+  "author": "",
+  "license": "ISC"
+}
