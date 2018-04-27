@@ -173,23 +173,23 @@
     <script>
         $(function(){
             $('.form__input').blur(function () {
-            var pwd = $('#password'),
-                email = $('#email'),
-                that =$(this),
-                msg = that.val(),
-                label = $(this).next().children('.form__label__content'),
-                btn = $('.btn');
-            if (msg) {
-                label.addClass('change');
-            } else {
-                label.removeClass('change');
-            }
-            if (pwd.val() && email.val()) {
-                btn.addClass('animated infinite pulse');
-            } else {
-                btn.removeClass('animated infinite pulse');
-            }
-        });
+                var pwd = $('#password'),
+                    email = $('#email'),
+                    that =$(this),
+                    msg = that.val(),
+                    label = $(this).next().children('.form__label__content'),
+                    btn = $('.btn');
+                if (msg) {
+                    label.addClass('change');
+                } else {
+                    label.removeClass('change');
+                }
+                if (pwd.val() && email.val()) {
+                    btn.addClass('animated infinite pulse');
+                } else {
+                    btn.removeClass('animated infinite pulse');
+                }
+            });
         })
       
     </script>
