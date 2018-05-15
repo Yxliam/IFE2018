@@ -9,10 +9,66 @@
 </head>
 
 <body>
+    <input id="first-number" type="number" value="0" placeholder="第一个数字">
+    <input id="second-number" type="number" value="0" placeholder="第二个数字">
+    <button id="add-btn">加</button>
+    <button id="minus-btn">减</button>
+    <button id="times-btn">乘</button>
+    <button id="divide-btn">除</button>
+    <p id="result">运算结果</p>
     <div id="table">
 
     </div>
     <script>
+        //简单计算
+        var add = document.querySelector('#add-btn'),
+            minus = document.querySelector('#minus-btn'),
+            times = document.querySelector('#times-btn'),
+            divide = document.querySelector('#divide-btn');
+
+        function calculate(opt) {
+            var firstNum = document.querySelector('#first-number').value - 0,
+                secondNum = document.querySelector('#second-number').value - 0,
+                resultEle = document.querySelector('#result'),
+                result = '';
+            if (isNaN(firstNum) || isNaN(secondNum)) return;
+            switch (opt) {
+                case '+':
+                    result = firstNum + secondNum;
+                    break;
+                case '-':
+                    result = firstNum - secondNum;
+                    break;
+                case '*':
+                    result = firstNum * secondNum;
+                    break;
+                case '/':
+                    if (secondNum == 0) return;
+                    result = firstNum / secondNum;
+                    break;
+                default:
+                    result = '嘿嘿，过份了耶'
+            }
+            resultEle.innerHTML = result;
+        }
+        // 加法
+        add.onclick = function() {
+                calculate('+')
+            }
+            // 减法
+        minus.onclick = function() {
+                calculate('-')
+            }
+            // 乘法
+        times.onclick = function() {
+                calculate('*')
+            }
+            // 除法
+        divide.onclick = function() {
+            calculate('/')
+        }
+
+
         // 小游戏
         function game() {
             var i = 1,
