@@ -15,6 +15,11 @@
     <button id="divide-btn">除</button>
     <p id="result">运算结果</p>
     <script>
+        var add = document.querySelector('#add-btn'),
+            minus = document.querySelector('#minus-btn'),
+            times = document.querySelector('#times-btn'),
+            divide = document.querySelector('#divide-btn');
+
         function calculate(opt) {
             var firstNum = document.querySelector('#first-number').value - 0,
                 secondNum = document.querySelector('#second-number').value - 0,
@@ -41,19 +46,19 @@
             resultEle.innerHTML = result;
         }
         // 加法
-        document.querySelector('#add-btn').onclick = function() {
+        add.onclick = function() {
                 calculate('+')
             }
             // 减法
-        document.querySelector('#minus-btn').onclick = function() {
+        minus.onclick = function() {
                 calculate('-')
             }
             // 乘法
-        document.querySelector('#times-btn').onclick = function() {
+        times.onclick = function() {
                 calculate('*')
             }
             // 除法
-        document.querySelector('#divide-btn').onclick = function() {
+        divide.onclick = function() {
             calculate('/')
         }
     </script>

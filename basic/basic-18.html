@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="table">
+
+    </div>
+    <script>
+        // 小游戏
+        function game() {
+            var i = 1,
+                max = 100,
+                t = '';
+            for (i; i <= max; i++) {
+                if ((i % 3) === 0 || (i.toString().indexOf('3') > -1)) {
+                    console.log('PA');
+                } else {
+                    console.log(i)
+                }
+            }
+        }
+        game();
+
+
+        function minTable() {
+            for (var i = 1; i < 10; i++) {
+                var str = '';
+                for (var j = 1; j < i + 1; j++) {
+                    str += `${j} x ${i} = ${i * j} `;
+                }
+                console.log(str);
+            }
+        }
+        minTable();
+
+
+        function motableMIn() {
+            var table = '<table>';
+            for (var i = 1; i <= 9; i++) {
+                table += '<tr>'
+                for (var j = 1; j <= i; j++) {
+                    table += '<td>' + j + '*' + i + ' = ' + i * j + '&nbsp;&nbsp;&nbsp;&nbsp;</td>'
+                }
+                table += '</tr>'
+            }
+            table += '</table>'
+            document.querySelector('#table').innerHTML = table;
+        }
+        motableMIn();
+
+
+        //99乘法表
+    </script>
+</body>
+
+</html>
