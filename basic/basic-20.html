@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>IFE ECMAScript</title>
+    <style>
+        select {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <label>
+        <input id="school" name="status" type="radio">
+        School
+    </label>
+    <label>
+        <input id="company" name="status" type="radio">
+        Company
+    </label>
+
+    <select id="school-select">        
+        <option>北京邮电大学</option>
+        <option>黑龙江大学</option>
+        <option>华中科技大学</option>
+    </select>
+
+    <select id="company-select">        
+        <option>百度</option>
+        <option>爱奇艺</option>        
+    </select>
+
+
+    <ul class="palette">
+        <li style="background-color:crimson"></li>
+        <li style="background-color:bisque"></li>
+        <li style="background-color:blueviolet"></li>
+        <li style="background-color:coral"></li>
+        <li style="background-color:chartreuse"></li>
+        <li style="background-color:darkolivegreen"></li>
+        <li style="background-color:cyan"></li>
+        <li style="background-color:#194738"></li>
+    </ul>
+
+    <p class="color-picker"></p>
+
+    <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
+    <button id="fade-btn">淡出</button>
+</body>
+<script>
+    var school = document.querySelector('#school'),
+        company = document.querySelector('#company'),
+        schoolSelect = document.querySelector('#school-select'),
+        companySelect = document.querySelector('#company-select');
+
+    function changeSelect() {
+        if (school.checked) {
+            schoolSelect.style.display = 'block'
+            companySelect.style.display = 'none'
+        } else {
+            schoolSelect.style.display = 'none'
+            companySelect.style.display = 'block'
+        }
+    }
+    school.onchange = changeSelect;
+    company.onchange = changeSelect;
+
+
+
+
+    var ul = document.querySelector('.palette');
+    ul.onclick = function(e) {
+        var t = e.target;
+        var c = t.style.backgroundColor;
+        var p = document.getElementsByClassName("color-picker")[0]
+        p.innerHTML = c;
+        p.style.color = c;
+    }
+
+
+    // setTimeout  setInterval
+    var fadeBtn = document.querySelector('#fade-btn'),
+        fadeObj = document.querySelector('#fade-obj'),
+        type = 1;
+    fadeBtn.onclick = changeObj
+
+    function changeObj(e) {
+        var speed = 100; //
+        if (type > 0) {
+            fadeObj.style.opacity = 1;
+        } else {
+            fadeObj.style.opacity = 0;
+        }
+        var timer = setInterval(function() {
+            fadeObj.style.opacity -= type * speed / 1000;
+            if (fadeObj.style.opacity < 0 || fadeObj.style.opacity > 1) {
+                clearInterval(timer);
+                e.target.disabled = false;
+                if (type > 0) {
+                    e.target.innerText = '淡入';
+                } else {
+                    e.target.innerText = '淡出';
+                }
+                type *= -1;
+            }
+        }, 100);
+    }
+</script>
+
+</html>
