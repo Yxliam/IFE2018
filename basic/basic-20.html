@@ -8,6 +8,12 @@
         select {
             display: none;
         }
+        
+        .smile-img {
+            width: 480px;
+            height: 480px;
+            background: url('./img/erik_ce204002.jpg') no-repeat;
+        }
     </style>
 </head>
 
@@ -48,6 +54,7 @@
 
     <div id="fade-obj" style="width:300px;height:300px;background:#000"></div>
     <button id="fade-btn">淡出</button>
+    <div class="smile-img" id="smileImg"></div>
 </body>
 <script>
     var school = document.querySelector('#school'),
@@ -107,6 +114,20 @@
             }
         }, 100);
     }
+    //笑脸
+    ;
+    (function() {
+        var smile = document.querySelector('#smileImg'),
+            timer = '',
+            positionY = 0;
+        timer = setInterval(function() {
+            positionY += 480;
+            if (positionY > 7680) {
+                positionY = 7680
+            }
+            smile.style.backgroundPositionY = '-' + positionY + 'px'
+        }, 100)
+    })()
 </script>
 
 </html>
