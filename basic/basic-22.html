@@ -169,20 +169,17 @@
         暂时不需要学习和使用正则表达式的方式
         */
         function diyTrim(str) {
-            if (str == '') {
-                return str;
-            }
-            while (true) {
-                if (str.indexOf(' ') == 0) {
-                    str = str.substring(1, parseInt(str.length));
-                } else if ((parseInt(str.length) != 0) && (str.lastIndexOf(' ') == parseInt(str.length) - 1)) {
-                    str = str.substring(0, parseInt(str.length) - 1);
-                } else {
-                    return str;
+            var start = 0;
+            var end = 0;
+            for (var i = 0; i < str.length; i++) {
+                if (str[i] !== ' ' && str[i] !== '　') {
+                    end = i;
+                    if (start == 0) start = i;
                 }
             }
-
+            return str.slice(start, end + 1);
         }
+
 
         // 测试用例
         console.log(diyTrim(' a f b    ')); // ->a f b
@@ -193,7 +190,7 @@
         console.log(diyTrim(' ')); // ->
         console.log(diyTrim('　')); // ->
         console.log(diyTrim('')); // ->
-
+        console.log('############');
         /*
         去掉字符串str中，连续重复的地方
         */
@@ -500,7 +497,6 @@
                 [8, "Area2-2-1", 6],
             ];
             // 数组转化为对象
-
             function toObject(arr) {
                 if (!Array.isArray(arr)) {
                     return
