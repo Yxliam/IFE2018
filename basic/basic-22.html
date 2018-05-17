@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <label>String A:
+                    <input id="radio-a" type="radio" checked="true" name="str-obj" value="a">
+                </label>
+        <textarea id="str-a"></textarea>
+        <label>String B:
+                    <input id="radio-b" type="radio" name="str-obj" value="b">
+                </label>
+        <textarea id="str-b"></textarea>
+        <label>Num A：<input id="num-a" type="number" value="0"></label>
+        <label>Num B：<input id="num-b" type="number" value="1"></label>
+    </div>
+    <div>
+        <button>获取当前选中输入的内容长度</button>
+        <button>当前选中输入中的第3个字符</button>
+        <button>把两个输入框的文字连接在一起输出（concat）</button>
+        <button>输入B中的内容，在输入A的内容中第一次出现的位置（indexOf）</button>
+        <button>输入A中的内容，在输入B的内容中最后一次出现的位置（lastIndexOf）</button>
+        <button>使用slice获取选中输入框内容的部分内容，参数为num-a及num-b</button>
+        <button>当前选中输入框的行数</button>
+        <button>使用substr获取选中输入框内容的子字符串，参数为num-a及num-b</button>
+        <button>把所选输入框中的内容全部转为大写</button>
+        <button>把所选输入框中的内容全部转为小写</button>
+        <button>把所选输入框中内容的半角空格全部去除</button>
+        <button>把所选输入框中内容的a全部替换成另外一个输入框中的内容</button>
+    </div>
+    <p id="result"></p>
+
+    <input id="queue-input" type="text">
+    <p id="queue-cont">队列内容：apple-&gt;pear</p>
+    <button id="in-btn">入队</button>
+    <button id="out-btn">出队</button>
+    <button id="font-btn">打印队头元素内容</button>
+    <button id="empty-btn">判断队列是否为空</button>
+
+    <div>
+        <input id="stack-input" type="text">
+    </div>
+    <p id="stack-cont">栈内容：applelt;-pear</p>
+    <button id="push-btn">进栈</button>
+    <button id="pop-btn">退栈</button>
+    <button id="i-font-btn">打印栈顶元素内容</button>
+    <button id="i-empty-btn">判断栈是否为空</button>
+
+    <script>
+        var numberA = document.querySelector('#num-a'),
+            numberB = document.querySelector('#num-b'),
+            radioA = document.querySelector('#radio-a'),
+            radioB = document.querySelector('#radio-b'),
+            areaA = document.querySelector('#str-a'),
+            areaB = document.querySelector('#str-b'),
+            btns = document.querySelectorAll('button'),
+            result = document.querySelector('#result');
+
+        function selectOpt() {
+            var text = '';
+            if (radioA.checked) {
+                text = areaA.value;
+            } else {
+                text = areaB.value;
+            }
+            return text
+
+        }
+
+        function checkNum(number) {
+            if (number == '' || number == null) {
+                return false
+            }
+            if (!isNaN(number) || number == 0) {
+                return true
+            } else {
+                return false;
+            }
+        }
+        btns[0].onclick = function() {
+            result.innerText = selectOpt().length;
+        }
+        btns[1].onclick = function() {
+            var text = selectOpt();
+            if (text.length >= 3) {
+                result.innerText = text.slice(2, 3);
+            }
+        }
+        btns[2].onclick = function() {
+            var areaAText = areaA.value,
+                areaBText = areaB.value;
+            result.innerText = areaAText.concat(areaBText);
+        }
+        btns[3].onclick = function() {
+            var areaAText = areaA.value,
+                areaBText = areaB.value,
+                index = '';
+            index = areaAText.indexOf(areaBText) > 0 ? areaAText.indexOf(areaBText) : 'A中不存在该字符串'
+            result.innerText = index;
+        }
+        btns[4].onclick = function() {
+            var areaAText = areaA.value,
+                areaBText = areaB.value,
+                index = '';
+            index = areaBText.lastIndexOf(areaAText) > 0 ? areaBText.indexOf(areaAText) : 'B中不存在该字符串'
+            result.innerText = index;
+        }
+        btns[5].onclick = function() {
+            var text = selectOpt(),
+                numberAText = numberA.value,
+                numberBText = numberB.value;
+            if (!checkNum(numberAText) || !checkNum(numberBText)) {
+                result.innerText = '截取的开始和结束位置必须是数字';
+                return;
+            }
+            if (numberBText > 0 && numberBText < numberAText) {
+                result.innerText = '截取的结束位置要大于开始位置';
+                return;
+            }
+            result.innerText = text.slice(numberAText, numberBText)
+
+        }
+        btns[6].onclick = function() {
+            var line = selectOpt().split("\n").length;
+            result.innerText = '当前行数' + line
+        }
+        btns[7].onclick = function() {
+            var text = selectOpt(),
+                numberAText = numberA.value,
+                numberBText = numberB.value;
+            result.innerText = text.substr(numberAText, numberBText)
+        }
+        btns[8].onclick = function() {
+            var text = selectOpt();
+            result.innerText = text.toLocaleUpperCase();
+        }
+        btns[9].onclick = function() {
+            var text = selectOpt();
+            result.innerText = text.toLocaleLowerCase();
+        }
+        btns[10].onclick = function() {
+            var text = selectOpt();
+            result.innerText = text.trim().replace(/\s/g, "")
+        }
+        btns[11].onclick = function() {
+            var areaAText = areaA.value,
+                areaBText = areaB.value;
+            if (radioA.checked) {
+                areaA.value = areaBText
+            } else {
+                areaB.value = areaAText
+            }
+        }
+
+
+
+
+
+        /*
+        实现一个字符串头尾去除空格的函数
+        注意需要去除的空格，包括全角、半角空格
+        暂时不需要学习和使用正则表达式的方式
+        */
+        function diyTrim(str) {
+            if (str == '') {
+                return str;
+            }
+            while (true) {
+                if (str.indexOf(' ') == 0) {
+                    str = str.substring(1, parseInt(str.length));
+                } else if ((parseInt(str.length) != 0) && (str.lastIndexOf(' ') == parseInt(str.length) - 1)) {
+                    str = str.substring(0, parseInt(str.length) - 1);
+                } else {
+                    return str;
+                }
+            }
+
+        }
+
+        // 测试用例
+        console.log(diyTrim(' a f b    ')); // ->a f b
+        console.log(diyTrim('    ffdaf    ')); // ->ffdaf
+        console.log(diyTrim('1    ')); // ->1
+        console.log(diyTrim('　　f')); // ->f
+        console.log(diyTrim('  　  a f b 　　 ')); // ->a f b
+        console.log(diyTrim(' ')); // ->
+        console.log(diyTrim('　')); // ->
+        console.log(diyTrim('')); // ->
+
+        /*
+        去掉字符串str中，连续重复的地方
+        */
+        function removeRepetition(str) {
+            var result = "",
+                len = str.length,
+                tmp = [],
+                tmpObj = {};
+            if (len == 0) return str;
+            for (var i = 0; i < len; i++) {
+                if (!tmpObj[str[i]]) {
+                    tmpObj[str[i]] = true;
+                    tmp.push(str[i])
+                }
+            }
+            result = tmp.join('');
+            // do something
+            return result;
+        }
+
+        // 测试用例
+        console.log(removeRepetition("aaa")); // ->a
+        console.log(removeRepetition("abbba")); // ->aba
+        console.log(removeRepetition("aabbaabb")); // ->abab
+        console.log(removeRepetition("")); // ->
+        console.log(removeRepetition("abc")); // ->abc
+        console.log('####################################');
+
+
+        // 编码3
+
+        var tree = {
+                "id": 0,
+                "name": "root",
+                "left": {
+                    "id": 1,
+                    "name": "Simon",
+                    "left": {
+                        "id": 3,
+                        "name": "Carl3",
+                        "left": {
+                            "id": 7,
+                            "name": "Lee",
+                            "left": {
+                                "id": 11,
+                                "name": "Fate"
+                            }
+                        },
+                        "right": {
+                            "id": 8,
+                            "name": "Annie",
+                            "left": {
+                                "id": 12,
+                                "name": "Saber"
+                            }
+                        }
+                    },
+                    "right": {
+                        "id": 4,
+                        "name": "Tony",
+                        "left": {
+                            "id": 9,
+                            "name": "Candy"
+                        }
+                    }
+                },
+                "right": {
+                    "id": 2,
+                    "name": "right",
+                    "left": {
+                        "id": 5,
+                        "name": "Carl12",
+                    },
+                    "right": {
+                        "id": 6,
+                        "name": "Carl",
+                        "right": {
+                            "id": 10,
+                            "name": "Kai"
+                        }
+                    }
+                }
+            }
+            // 假设id和name均不会重复，根据输入name找到对应的id
+            // function findIdByName(name) {
+            //     return forItem(tree, name)
+            // }
+
+        function forItem(obj, name) {
+            for (item in obj) {
+                // console.log(obj[item]);
+                if (obj[item] == name) {
+                    return obj[item];
+                } else if (typeof(obj[item]) == 'object') {
+                    forItem(obj[item], name)
+                }
+            }
+        }
+        console.log(forItem(tree, 'Carl12'));
+
+        // 假设id和name均不会重复，根据输入id找到对应的name
+        function findNameById(id) {
+
+        }
+
+        // 把这个对象中所有的名字以“前序遍历”的方式全部输出到console中
+        function getListWithDLR() {
+
+        }
+
+        // 把这个对象中所有的名字以“中序遍历”的方式全部输出到console中
+        function getListWithLDR() {
+
+        }
+
+        // 把这个对象中所有的名字以“后序遍历”的方式全部输出到console中
+        function getListWithLRD() {
+
+        }
+        // 数组
+        (function() {
+            var queue = ["apple", "pear"];
+            var inputText = document.querySelector('#queue-input'), //输入框
+                queueCont = document.querySelector('#queue-cont'), //队列文本
+                inBtn = document.querySelector('#in-btn'),
+                outBtn = document.querySelector('#out-btn'),
+                fontBtn = document.querySelector('#font-btn'),
+                emptyBtn = document.querySelector('#empty-btn');
+            inBtn.onclick = function() {
+                var intxt = inputText.value;
+                queue.unshift(intxt);
+                queueCont.innerText = queue.join('->')
+            }
+            outBtn.onclick = function() {
+                queue.shift();
+                queueCont.innerText = queue.join('->')
+            }
+            fontBtn.onclick = function() {
+                console.log(queue[0]);
+            }
+            emptyBtn.onclick = function() {
+                var len = queue.length;
+                if (!len) {
+                    console.log('该数组为空');
+                } else {
+                    console.log('该数组不为空');
+                }
+            }
+
+        })()
+
+        ;
+        (function() {
+            var queue = ["apple", "pear"];
+            var inputText = document.querySelector('#stack-input'), //输入框
+                queueCont = document.querySelector('#stack-cont'), //队列文本
+                inBtn = document.querySelector('#push-btn'),
+                outBtn = document.querySelector('#pop-btn'),
+                fontBtn = document.querySelector('#i-font-btn'),
+                emptyBtn = document.querySelector('#i-empty-btn');
+            inBtn.onclick = function() {
+                var intxt = inputText.value;
+                queue.push(intxt);
+                queueCont.innerText = queue.join(';')
+            }
+            outBtn.onclick = function() {
+                queue.pop();
+                queueCont.innerText = queue.join(';')
+            }
+            fontBtn.onclick = function() {
+                console.log(queue[queue.length - 1]);
+            }
+            emptyBtn.onclick = function() {
+                var len = queue.length;
+                if (!len) {
+                    console.log('该数组为空');
+                } else {
+                    console.log('该数组不为空');
+                }
+            }
+        })()
+
+        ;
+        (function() {
+            var arr = [43, 54, 4, -4, 84, 100, 58, 27, 140];
+
+            function smallToBig(a, b) {
+                return a - b
+            }
+
+            function bigTosmall(a, b) {
+                return b - a
+            }
+            console.log(arr.sort(smallToBig))
+            console.log(arr.sort(bigTosmall))
+
+            var arr2 = ['apple', 'dog', 'cat', 'car', 'zoo', 'orange', 'airplane'];
+            console.log(arr2.sort());
+
+            function letterFilter(a, b) {
+                return b.localeCompare(a)
+            }
+            console.log(arr2.sort(letterFilter));
+            console.log("###################");
+            /*
+                将上面的二维数组，按照每个元素中第二个数从大到小的顺序进行排序输出
+                [[22, 63], [16, 60], [7, 44], [26, 35], [10, 14]]
+            */
+            var arr3 = [
+                [10, 14],
+                [16, 60],
+                [7, 44],
+                [26, 35],
+                [22, 63]
+            ];
+
+
+            function sortFn(arr) {
+                for (var j = 0; j < arr.length - 1; j++) {
+                    //两两比较，如果前一个比后一个大，则交换位置。
+                    for (var i = 0; i < arr.length - 1 - j; i++) {
+                        if (arr[i][1] < arr[i + 1][1]) {
+                            var temp = arr[i];
+                            arr[i] = arr[i + 1];
+                            arr[i + 1] = temp;
+                        }
+                    }
+                }
+            }
+            sortFn(arr3);
+            console.log(arr3);
+            console.log('################');
+
+            var arr4 = [{
+                id: 1,
+                name: 'candy',
+                value: 40
+            }, {
+                id: 2,
+                name: 'Simon',
+                value: 50
+            }, {
+                id: 3,
+                name: 'Tony',
+                value: 45
+            }, {
+                id: 4,
+                name: 'Annie',
+                value: 60
+            }];
+
+            function objFilter(arr) {
+                for (var j = 0; j < arr.length - 1; j++) {
+                    //两两比较，如果前一个比后一个大，则交换位置。
+                    for (var i = 0; i < arr.length - 1 - j; i++) {
+                        if (arr[i]['value'] > arr[i + 1]['value']) {
+                            var temp = arr[i];
+                            arr[i] = arr[i + 1];
+                            arr[i + 1] = temp;
+                        }
+                    }
+                }
+            }
+            objFilter(arr4)
+            console.log(arr4);
+            console.log('#######');
+            var scoreObject = {
+                "Tony": {
+                    "Math": 95,
+                    "English": 79,
+                    "Music": 68
+                },
+                "Simon": {
+                    "Math": 100,
+                    "English": 95,
+                    "Music": 98
+                },
+                "Annie": {
+                    "Math": 54,
+                    "English": 65,
+                    "Music": 88
+                }
+            }
+
+            function toTwodimension(obj) {
+                var arr = [];
+                for (item in obj) {
+                    var tmp = [];
+                    tmp.push(item)
+                    if (typeof(obj[item]) == 'object') {
+                        for (key in obj[item]) {
+                            tmp.push(obj[item][key])
+                        }
+                    }
+                    arr.push(tmp)
+                }
+                return arr;
+            }
+            console.log(toTwodimension(scoreObject));
+            console.log('###########');
+
+
+            var menuArr = [
+                [1, "Area1", -1],
+                [2, "Area2", -1],
+                [3, "Area1-1", 1],
+                [4, "Area1-2", 1],
+                [5, "Area2-1", 2],
+                [6, "Area2-2", 2],
+                [7, "Area1-2-3", 4],
+                [8, "Area2-2-1", 6],
+            ];
+            // 数组转化为对象
+
+            function toObject(arr) {
+                if (!Array.isArray(arr)) {
+                    return
+                }
+                var menuObject = {};
+                for (var i = 0, len = arr.length; i < len; i++) {
+                    if (arr[i][2] == '-1') {
+                        menuObject[arr[i][0]] = arr[i]
+                    } else {
+
+                    }
+                    // for (var j = 0, len2 = arr[i].length; j < len2; j++) {
+                    //     // console.log(arr[i][2]);
+
+                    // }
+                }
+                console.log(menuObject);
+            }
+            toObject(menuArr);
+
+        })()
+    </script>
+</body>
+
+</html
