@@ -278,21 +278,26 @@
                 }
             }
             // 假设id和name均不会重复，根据输入name找到对应的id
-            // function findIdByName(name) {
-            //     return forItem(tree, name)
-            // }
+        function findIdByName(name) {
+            if (!tree) return;
 
-        function forItem(obj, name) {
-            for (item in obj) {
-                // console.log(obj[item]);
-                if (obj[item] == name) {
-                    return obj[item];
-                } else if (typeof(obj[item]) == 'object') {
-                    forItem(obj[item], name)
+            function result(name, tree) {
+                let id;
+                if (tree.name === name) {
+                    id = tree.id;
+                } else if (tree.left) {
+                    id = result(name, tree.left);
+                    if (id === undefined && tree.right) {
+                        id = result(name, tree.right);
+                    }
                 }
+                return id;
             }
+            return result(name, tree)
         }
-        console.log(forItem(tree, 'Carl12'));
+
+
+
 
         // 假设id和name均不会重复，根据输入id找到对应的name
         function findNameById(id) {
@@ -410,7 +415,7 @@
                 [22, 63]
             ];
 
-
+            //方法一
             function sortFn(arr) {
                 for (var j = 0; j < arr.length - 1; j++) {
                     //两两比较，如果前一个比后一个大，则交换位置。
@@ -423,6 +428,8 @@
                     }
                 }
             }
+            //方法二
+            console.log(arr3.sort().reverse());
             sortFn(arr3);
             console.log(arr3);
             console.log('################');
@@ -444,7 +451,7 @@
                 name: 'Annie',
                 value: 60
             }];
-
+            //方法一
             function objFilter(arr) {
                 for (var j = 0; j < arr.length - 1; j++) {
                     //两两比较，如果前一个比后一个大，则交换位置。
@@ -457,6 +464,10 @@
                     }
                 }
             }
+            //方法二
+            console.log(arr3.sort(function(a, b) {
+                return a.value > b.value;
+            }));
             objFilter(arr4)
             console.log(arr4);
             console.log('#######');
@@ -512,21 +523,27 @@
                 if (!Array.isArray(arr)) {
                     return
                 }
-                var menuObject = {};
-                for (var i = 0, len = arr.length; i < len; i++) {
-                    if (arr[i][2] == '-1') {
-                        menuObject[arr[i][0]] = arr[i]
-                    } else {
-
-                    }
-                    // for (var j = 0, len2 = arr[i].length; j < len2; j++) {
-                    //     // console.log(arr[i][2]);
-
-                    // }
+                var obj = {
+                    0: {}
                 }
-                console.log(menuObject);
+                for (var i = 0; i < arr.length; i++) {
+                    obj[arr[i][0]] = {
+                        'name': arr[i][1]
+                    };
+                    if (arr[i][2] == -1) {
+                        obj[0][arr[i][0]] = obj[arr[i][0]];
+                    } else {
+                        if (obj[arr[i][2]]['subMenu']) {
+                            obj[arr[i][2]]['subMenu'][arr[i][0]] = obj[arr[i][0]];
+                        } else {
+                            obj[arr[i][2]]['subMenu'] = {};
+                            obj[arr[i][2]]['subMenu'][arr[i][0]] = obj[arr[i][0]];
+                        }
+                    }
+                }
+                return obj['0'];
             }
-            toObject(menuArr);
+            console.log(toObject(menuArr));
 
         })()
     </script>
